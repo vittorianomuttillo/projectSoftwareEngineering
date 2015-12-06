@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Universita degli Studi dell'Aquila
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="domain.entity.ETask" table="ETask" lazy="false">
+		<id name="idTask" column="IdTask" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<many-to-one name="consulente" cascade="lock" column="EConsulenteIdConsulente" class="domain.entity.EConsulente" not-null="true" lazy="no-proxy">
+		</many-to-one>
+		<many-to-one name="tariffa" column="ETariffaID" class="domain.entity.ETariffa" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy">
+		</many-to-one>
+		<property name="descrizione" column="Descrizione" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="nomeTask" column="NomeTask" type="string" length="255" not-null="false" lazy="false"/>
+	</class>
+</hibernate-mapping>

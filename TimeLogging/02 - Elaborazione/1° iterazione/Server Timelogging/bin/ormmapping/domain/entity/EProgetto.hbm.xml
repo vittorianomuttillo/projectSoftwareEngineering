@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Universita degli Studi dell'Aquila
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="domain.entity.EProgetto" table="EProgetto" lazy="false">
+		<id name="idProgetto" column="IdProgetto" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="nomeProgetto" column="NomeProgetto" type="string" length="255" not-null="false" lazy="false"/>
+		<set name="elenco_sotoprogetti" lazy="true" cascade="save-update,lock" inverse="false">
+			<key column="EProgettoIdProgetto" not-null="true"/>
+			<one-to-many class="domain.entity.ESottoprogetto"/>
+		</set>
+	</class>
+</hibernate-mapping>
