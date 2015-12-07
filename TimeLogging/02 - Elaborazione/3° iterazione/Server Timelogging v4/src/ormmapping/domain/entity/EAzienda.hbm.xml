@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Universita degli Studi dell'Aquila
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="domain.entity.EAzienda" table="EAzienda" lazy="false">
+		<id name="nomeAzienda" column="NomeAzienda" type="string">
+			<generator class="assigned">
+			</generator>
+		</id>
+		<many-to-one name="direzione" column="EDirezioneID" class="domain.entity.EDirezione" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy">
+		</many-to-one>
+		<many-to-one name="marketing" column="EMarketingID" class="domain.entity.EMarketing" cascade="save-update,lock" unique="true" not-null="true" lazy="no-proxy">
+		</many-to-one>
+		<property name="indirizzo" column="Indirizzo" type="string" length="255" not-null="false" lazy="false"/>
+		<set name="elenco_progetti" lazy="true" cascade="save-update,lock" inverse="false">
+			<key column="EAziendaNomeAzienda" not-null="true"/>
+			<one-to-many class="domain.entity.EProgetto"/>
+		</set>
+	</class>
+</hibernate-mapping>
