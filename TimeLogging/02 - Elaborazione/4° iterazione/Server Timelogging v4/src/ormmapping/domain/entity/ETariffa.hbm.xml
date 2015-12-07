@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: Universita degli Studi dell'Aquila
+License Type: Academic
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="domain.entity.ETariffa" table="ETariffa" lazy="false">
+		<composite-id>
+			<key-property name="eDipendente_CodiceFiscale" column="EDipendenteCodiceFiscale" type="string"/>
+			<key-property name="eTask_IdTask" column="ETaskIdTask" type="integer"/>
+		</composite-id>
+		<many-to-one name="eDipendente" column="EDipendenteCodiceFiscale" class="domain.entity.EDipendente" insert="false" update="false">
+		</many-to-one>
+		<many-to-one name="eTask" column="ETaskIdTask" class="domain.entity.ETask" insert="false" update="false">
+		</many-to-one>
+		<property name="quantita" column="Quantita" type="double" not-null="true" lazy="false"/>
+		<property name="unita" column="Unita" type="string" length="255" not-null="false" lazy="false"/>
+	</class>
+</hibernate-mapping>
