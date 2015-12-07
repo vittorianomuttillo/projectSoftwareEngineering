@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<!--
+Licensee: Universita degli Studi dell'Aquila
+License Type: Academic
+-->
+<project name="Timelogging" default="instrument">
+	<description>
+		Timelogging
+	</description>
+
+	<property name="src.dir" location="src" />
+	<property name="lib.dir" location="lib" />
+	<property name="classes.dir" location="classes" />
+	<property name="javac.debug" value="on" />
+
+	<target name="compile" description="Compile Timelogging">
+		<mkdir dir="${classes.dir}" />
+		<javac srcdir="${src.dir}" destdir="${classes.dir}" debug="${javac.debug}">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+			</classpath>
+		</javac>
+		<copy todir="${classes.dir}">
+			<fileset dir="${src.dir}">
+				<exclude name="**/*.java" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="clean" description="Clean Timelogging">
+		<delete dir="${classes.dir}" />
+	</target>
+
+	<target name="createSchema" description="Run create data schema sample">
+		<java classname="ormsamples.CreateTimeloggingDatabaseSchema" fork="true">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<pathelement location="${classes.dir}"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="createdata" description="Run create test data sample">
+		<java classname="ormsamples.CreateTimeloggingData" fork="true">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<pathelement location="${classes.dir}"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="retrievedata" description="Run retrieve data sample">
+		<java classname="ormsamples.RetrieveTimeloggingData" fork="true">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<pathelement location="${classes.dir}"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="deletedata" description="Run delete data sample">
+		<java classname="ormsamples.DeleteTimeloggingData" fork="true">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<pathelement location="${classes.dir}"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="dropschema" description="Run drop schema sample">
+		<java classname="ormsamples.DropTimeloggingDatabaseSchema" fork="true">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<pathelement location="${classes.dir}"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="listdata" description="Run list data sample">
+		<java classname="ormsamples.ListTimeloggingData" fork="true">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<pathelement location="${classes.dir}"/>
+			</classpath>
+		</java>
+	</target>
+
+	<target name="instrument" depends="compile">
+		<taskdef name="instrument" classname="org.hibernate.tool.instrument.cglib.InstrumentTask">
+			<classpath>
+				<fileset dir="${lib.dir}" includes="*.jar"/>
+				<pathelement location="${classes.dir}"/>
+			</classpath>
+		</taskdef>
+		<instrument verbose="true">
+			<fileset dir="${classes.dir}">
+				<include name="domain\entity\EAzienda.class"/>
+				<include name="domain\entity\EDipendente.class"/>
+				<include name="domain\entity\EConsulente.class"/>
+				<include name="domain\entity\EDirezione.class"/>
+				<include name="domain\entity\EManager.class"/>
+				<include name="domain\entity\EProgetto.class"/>
+				<include name="domain\entity\ESottoprogetto.class"/>
+				<include name="domain\entity\ETariffa.class"/>
+				<include name="domain\entity\ETask.class"/>
+			</fileset>
+		</instrument>
+	</target>
+</project>
