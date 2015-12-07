@@ -1,6 +1,6 @@
 # projectSoftwareEngineering
-Project Software Engineering
+Software Engineering Project 
 
 Progettazione e realizzazione di un sistema software per il Time-Logging
 
-Presentazione: 
+Presentazione: http://issuu.com/vittorianomuttillo/docs/progettazione_e_realizzazione_di_un
