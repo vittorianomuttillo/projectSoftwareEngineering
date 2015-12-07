@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<timelogging>    
+	
+	<ice>	
+		<iceHost>localhost</iceHost>
+		<icePort>10012</icePort>
+		<iceProtocol>default</iceProtocol>		
+	</ice>
+	
+	<azienda>
+		<nome>Ausbleden SpA</nome>
+		<dipendentiTask>
+			<dip>EConsulente</dip>
+		</dipendentiTask>
+	</azienda>
+
+	<stipendio>
+		<stipmanager>Fisso</stipmanager>
+		
+		<stipconsulente>Fisso</stipconsulente>
+		<stipconsulente>Variabile</stipconsulente>
+	</stipendio>
+
+	<livelli_salariali>
+		<alto>100</alto>
+		<medio>50</medio>
+		<basso>10</basso>
+	</livelli_salariali>
+	
+</timelogging>
